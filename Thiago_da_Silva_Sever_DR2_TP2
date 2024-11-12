@@ -242,6 +242,60 @@ lista = [20, 10, 30, 40, 60, 50, 70, 90, 80, 100]
 
 numero = int(input("Digite um número para buscar na lista: "))
 
+#Exercicio 12
+#%%
+'''Utilizarei conceitos simples e loop para varrer a lista e procurar os itens solicitados'''
+
+lista = [10, 2, 30, 4, 50, 6, 70, 8, 9, 1]
+
+
+menor = 100
+maior = 0
+soma = 0
+media = 0
+
+for i in lista:
+	if i < menor:
+		menor = i
+
+for i in lista:
+	if i > maior:
+		maior = i
+		
+for i in lista:
+	soma += i
+	
+media = soma / len(lista)
+
+print(f'Os valores solicitados seguem abaixo:\nMenor numero: {menor}.\nMaior numero: {maior}.\nSoma dos numeros: {soma}.\nMedia dos numeros: {media}.')
+
+#Exercicio 13
+#%%	
+
+def eh_par(numero):
+    '''Esta funcao determina por meio de uma verificacao matematica se o numero e par.
+    
+    parametro: numero inteiro
+    retorno: bool'''
+    return numero % 2 == 0
+
+lista = [10, 2, 30, 4, 50, 6, 70, 8, 9, 1]
+
+
+pares = []
+impares = []
+
+
+for numero in lista:
+    '''For que separa os numeros entre pares e impares'''
+    if eh_par(numero):
+        pares.append(numero)
+    else:
+        impares.append(numero)
+
+print("Números pares:", pares)
+print("Números ímpares:", impares)
+
 posicao = buscar_numero(lista, numero)
 
 #Printando o resultado da busca
