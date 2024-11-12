@@ -1,0 +1,252 @@
+#TP2 - Programação com Python
+
+#Exercício 1
+#%%
+def contador_vogais():
+    """ Esta função lê uma sequência de caracteres terminada por um ponto ('.'), 
+        contando o número de vogais na sequência.
+    """
+    
+    # Conjunto de vogais para verificação.
+    vogais = "aeiouAEIOUãáàâÃÁÀÂéèẽêÉÈÊẼõóòôÓÒÔÕíìĩîÍÌÎĨúùûũÚÙÛŨ"
+    total_de_vogais = 0
+
+    while True:
+        # Lê um caractere de entrada
+        string = input("Informe o caractere desejado. Para finalizar a sequência, utilize um '.' (ponto): ")
+        
+        # Verifica se o usuário digitou apenas um caractere
+        if len(string) != 1:
+            print("Você deve digitar apenas 1 caractere.")
+            continue
+        
+        # Encerra o loop se o caractere digitado for o ponto
+        if string == '.':
+            break
+        
+        # Verifica se o caractere está nas vogais e, se sim, incrementa o contador
+        if string in vogais:
+            total_de_vogais += 1
+
+    # Exibe o número total de vogais encontradas
+    print(f"Número de vogais: {total_de_vogais}")
+
+# Executa a função.
+contador_vogais()
+
+#Exercício 2 
+#%%
+def soma_media():
+    """ Esta função iŕa realizar a soma de todos os numeros de 1 a 100 por meio do método range, 
+utilizando uma divisão simples pelo número de elementos para obter a média"""
+    soma_100 = 0
+    for i in range(1,101):
+        soma_100 += i
+    
+    media_100 = soma_100/100
+    
+    print(f'A soma de todos elementos de 1 a 100 resulta em: {soma_100}.\nJá a média dos números de 1 a 100 resulta em: {media_100}.')
+
+soma_media()
+
+#Exercicio 3
+#%%
+"""Neste exercicio criarei uma funçao que utilize recursividade para realizar o calculo fatorial de um numero que sera parametro dela, e utilizar um loop 
+de for para utiliza-la numa lista de numeros que criarei"""
+
+numeros = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+
+def fatorial(n):
+    '''funcao que retorna 1 para 1 e 0 e chama-se caso seja maior. '''
+    if n < 0:
+        return "Fatorial não é definido para números negativos."
+    elif n == 0 or n == 1:
+        return 1
+    else:
+        return n * fatorial(n - 1)  # chamada recursiva
+
+for n in numeros:
+    print(f"O fatorial de {n} é: {fatorial(n)}")
+	
+#Exercicio 4
+'''Neste exercicio usarei dois for aninhados para realizar a operaçao em um range
+de 1 a 10, printando cada resultado, gerando assim a tabuada de 1 a 10.'''
+	
+for i in range(1, 11):  # Range definido
+    print(f'Tabuada do {i}')
+    for j in range(1, 11):  #Range definido
+        print(f'{i} * {j} = {i * j}')
+    print()  
+    
+#Exercicio 5
+#%%
+'''Neste exercicio receberei  numeros por meio de inputs, onde usarei os dois como primeiros elementos da PA, e o ultimo como delimitador da quantidade de 
+elementos dela. utilizarei uma funcao para realizar a soma do proximo elemento, considerando a constante resultante delas.'''
+
+num_1 = int(input("Informe o primeiro numero da Progressao Aritmetica, devendo ser positivo"))
+num_2 = int(input("Informe o segundo numero da Progressao Aritmetica, sendo maior que o primeiro"))
+limite = int(input("Informe quantos numeros deseja para a PA"))
+constante = (num_1 - num_2) * -1
+n = 0
+PA = [num_1]
+
+
+for i in range(1,limite):
+	n = PA[-1] + constante
+	PA.append(n)
+
+print(PA)
+
+#Exercicio 6
+#%%
+
+def eh_primo(n):
+    """Verifica se um número é primo, retornando um valor booleano."""
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def primos_no_intervalo(inferior, superior):
+    """Encontra e retorna a lista de números primos em um intervalo, retornando uma lista com os valores que se enquadram na descricao."""
+    primos = []
+    for numero in range(inferior, superior + 1):
+        if eh_primo(numero):
+            primos.append(numero)
+    return primos
+
+# Solicita ao usuário o intervalo
+inferior = int(input("Digite o limite inferior do intervalo: "))
+superior = int(input("Digite o limite superior do intervalo: "))
+
+# Encontra os números primos no intervalo
+primos = primos_no_intervalo(inferior, superior)
+
+# Exibe os resultados
+print("Números primos encontrados:", ', '.join(map(str, primos)))
+print("Quantidade de números primos encontrados:", len(primos))
+
+#Exercicio 7 
+#%%
+
+'''O programa definira a lista do exercicio, printando seu conteudo em ordem inversa.'''
+
+lista = [10, 20, 30, 40, 50, 60, 70, 80]
+
+
+# Mostrando a lista na ordem invertida com indice negativo
+lista_invertida = lista[::-1]
+print(lista_invertida)
+
+#Exercicio 8 
+#%%
+'''Neste exercicio utilizarei um loop for para ler cada elemento de uma das listas e adicionar ao elemento correspondente da outra, resultando na 
+soma das duas listas. Como os tamanhos sao iguais, utilizarei o comprimento da primeira como delimitador para o range.'''
+
+lista1 = [1, 2, 3, 4, 5, 6, 7, 8]
+lista2 = [10, 20, 30, 40, 50, 60, 70, 80]
+
+#Lista que armazenara os resultados.
+lista_soma = []
+
+for i in range(len(lista1)):
+    lista_soma.append(lista1[i] + lista2[i])
+    
+print("A soma das listas resulta em:")
+print(lista_soma)
+
+#Exercicio 9
+#%%
+'''Neste programa definirei duas funcoes, onde a primeira lera uma sequencia de numeros e a segunda mostrara ela inversamente'''
+
+lista = []
+while True:
+    numero = int(input("Digite um número (0 para parar): "))
+    if numero == 0:
+        break
+    lista.append(numero)
+
+print("Números inseridos:", lista)
+
+def mostra_lista(x):
+	'''Funcao que imprime a lista selecionada como parametro'''
+	print(f'A lista selecionada e:\n{x}')
+
+def mostra_inv(x):
+	'''Funcao criara uma lista invertida, printando ela'''
+	lista_inv = x[::-1]
+	print(lista_inv)
+	
+mostra_lista(lista)
+mostra_inv(lista)
+
+#Exercicio 10
+#%%
+'''Este programa ira ler numeros via input criando uma lista, que tera uma funcao para ler numeros que se enquadrem dentro do valor estipulado, enquanto outra lera os 
+que nao foram inseridos nesta lista mas inseridos pelo usuario'''
+
+lista = []
+while True:
+    numero = int(input("Digite um número (0 para parar): "))
+    if numero == 0:
+        break
+    lista.append(numero)
+
+print("Números inseridos:", lista)
+media_lista = sum(lista) / len(lista) 
+
+def maior_igual_media(lista):
+	'''Aqui serao lidos e inseridos em lista propria os maiores ou iguais a media da lista'''
+	maior_media = []
+	for i in lista:
+		if i >= media_lista:
+			maior_media.append(i)
+	print(f'A lista dos numeros maiores ou iguais a media contem:\n{maior_media}')
+	
+def menor_a_media(lista):
+	'''Aqui serao lidos e inseridos em lista propria os menores a media da lista'''
+	menor_media = []
+	for i in lista:
+		if i < media_lista:
+			menor_media.append(i)
+	print(f'A lista dos numeros menores que a media contem:\n{menor_media}')
+
+maior_igual_media(lista)
+menor_a_media(lista)
+
+#Exercicio 11
+#%%
+def buscar_numero(lista, num):
+    """
+    Busca a posição de um número em uma lista.
+
+    Parametro:
+        lista (list): A lista de números na qual será feita a busca.
+        numero (int): O número que deseja encontrar na lista.
+
+    Retorno:
+        int: A posição do número na lista, caso ele seja encontrado.
+             Retorna -1 se o número não estiver presente na lista.
+    
+    A função utiliza o método `index` para tentar encontrar a posição do
+    número fornecido. Caso o número não consiga, volta um ErroValue como Except
+    """
+    try:
+        return lista.index(num)
+    except ValueError:
+        return -1
+
+lista = [20, 10, 30, 40, 60, 50, 70, 90, 80, 100]
+
+numero = int(input("Digite um número para buscar na lista: "))
+
+posicao = buscar_numero(lista, numero)
+
+#Printando o resultado da busca
+if posicao != -1:
+    print(f"O número {numero} foi encontrado na posição {posicao}.")
+else:
+    print("O número não foi encontrado na lista.")
+
