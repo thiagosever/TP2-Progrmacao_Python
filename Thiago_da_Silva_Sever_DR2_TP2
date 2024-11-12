@@ -304,3 +304,138 @@ if posicao != -1:
 else:
     print("O número não foi encontrado na lista.")
 
+#Exercicio 14
+#%%
+'''Neste programa utilizo o while como loop e o try/except para determinar se o valor e valido, enquanto uma condicional if verifica a validade do numero
+nos parametros apresentados'''
+while True:
+    try:
+        numero = float(input("Digite um número maior ou igual a zero: "))
+        if numero >= 0:
+            break
+        else:
+            print("Erro: O número deve ser maior ou igual a zero.")
+    except ValueError:
+        print("Erro: Entrada inválida. Por favor, digite um número válido.")
+
+print(f"Você digitou o número: {numero}")
+
+#Exercicio 15
+#%%
+
+def entrada_dados():
+    alunos = []
+    while True:
+        nome = input("Digite o nome do aluno (ou 'FIM' para terminar): ")
+        if nome.upper() == "FIM":
+            break
+        try:
+            nota1 = float(input("Digite a primeira nota (0-10): "))
+            nota2 = float(input("Digite a segunda nota (0-10): "))
+            if 0 <= nota1 <= 10 and 0 <= nota2 <= 10:
+                alunos.append({'nome': nome, 'nota1': nota1, 'nota2': nota2})
+            else:
+                print("Notas devem estar entre 0 e 10. Tente novamente.")
+        except ValueError:
+            print("Por favor, insira um valor numérico para as notas.")
+    return alunos
+
+def calcula_media_aluno(nota1, nota2):
+    return round((nota1 + nota2) / 2, 2)
+
+def calcula_media_turma(alunos):
+    if not alunos:
+        return 0
+    soma_medias = sum(calcula_media_aluno(aluno['nota1'], aluno['nota2']) for aluno in alunos)
+    return round(soma_medias / len(alunos), 2)
+
+def main():
+    alunos = entrada_dados()
+    print("\nResultados:")
+    
+    for aluno in alunos:
+        media = calcula_media_aluno(aluno['nota1'], aluno['nota2'])
+        status = "Aprovado" if media >= 6 else "Prova Final"
+        print(f"aluno: {aluno['nome']}, média: {media}, status: {status}")
+    
+    media_turma = calcula_media_turma(alunos)
+    print(f"\nmédia geral da turma: {media_turma}")
+
+main()
+
+#Exercicio 16
+#%%
+def entrada_dados():
+    """
+    Coleta os dados dos alunos, incluindo o nome e duas notas.
+    
+    A função solicita ao usuário que insira o nome do aluno e duas notas (entre 0 e 10) para cada aluno. 
+    O processo de entrada de dados continua até que o usuário digite "FIM". As notas são verificadas 
+    para estarem dentro do limite proposto de 10.
+    
+    Retorno:
+        lista de dicionários contendo o nome e notas de cada aluno.
+    """
+    alunos = []
+    while True:
+        nome = input("Digite o nome do aluno (ou 'FIM' para terminar): ")
+        if nome.upper() == "FIM":
+            break
+        try:
+            nota1 = float(input("Digite a primeira nota (0-10): "))
+            nota2 = float(input("Digite a segunda nota (0-10): "))
+            if 0 <= nota1 <= 10 and 0 <= nota2 <= 10:
+                alunos.append({'nome': nome, 'nota1': nota1, 'nota2': nota2})
+            else:
+                print("Notas devem estar entre 0 e 10. Tente novamente.")
+        except ValueError:
+            print("Por favor, insira um valor numérico para as notas.")
+    return alunos
+
+def calcula_media_aluno(nota1, nota2):
+    """
+    Calcula a média das duas notas de um aluno.
+    
+    Parametros:
+        nota1 : Primeira nota do aluno.
+        nota2 : Segunda nota do aluno.
+    
+    Retorno:
+        Média das duas notas.
+    """
+    return round((nota1 + nota2) / 2, 2)
+
+def calcula_media_turma(alunos):
+    """
+    Calcula a média geral da turma com base nas médias de cada aluno.
+    
+    Parametro:
+        alunos 
+    
+    Retorno:
+        Média geral da turma. 
+    """
+    if not alunos:
+        return 0
+    soma_medias = sum(calcula_media_aluno(aluno['nota1'], aluno['nota2']) for aluno in alunos)
+    return round(soma_medias / len(alunos), 2)
+
+def main():
+    """
+    Função principal que executa o programa de cálculo de médias de alunos.
+    
+    A funcao utiliza outra funcao para coletar os dados dos alunos, imprimindo a media do aluno, seu status e a media geral.
+    
+    """
+    alunos = entrada_dados()
+    print("\nResultados:")
+    
+    for aluno in alunos:
+        media = calcula_media_aluno(aluno['nota1'], aluno['nota2'])
+        status = "Aprovado" if media >= 6 else "Prova Final"
+        print(f"Aluno: {aluno['nome']}, Média: {media}, Status: {status}")
+    
+    media_turma = calcula_media_turma(alunos)
+    print(f"\nMédia geral da turma: {media_turma}")
+
+main()
